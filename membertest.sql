@@ -12,15 +12,15 @@ regidate date default sysdate not null
 
 create sequence membertable_seq increment by 1 start with 1 nocache nocycle
 
--- ºÎ¸ğ ´õ¹Ìµ¥ÀÌÅÍ ÀÔ·Â
+-- ë¶€ëª¨ ë”ë¯¸ë°ì´í„° ì…ë ¥
 insert into MEMBERTABLE(mno, bwriter, id, pw)
-values (membertable_seq.nextval, '±è±â¿ø', 'kkw', '1234')
+values (membertable_seq.nextval, 'ê¹€ê¸°ì›', 'kkw', '1234')
 
 insert into MEMBERTABLE(mno, bwriter, id, pw)
-values (membertable_seq.nextval, '±è¼ö¾Æ', 'ksa', '1234')
+values (membertable_seq.nextval, 'ê¹€ìˆ˜ì•„', 'ksa', '1234')
 
 insert into MEMBERTABLE(mno, bwriter, id, pw)
-values (membertable_seq.nextval, '±è±è±è', 'kim', '1234')
+values (membertable_seq.nextval, 'ê¹€ê¹€ê¹€', 'kim', '1234')
 
 
 
@@ -42,12 +42,12 @@ bdate date not null
 create sequence memberboard_seq increment by 1 start with 1 nocache nocycle ; 
 
 insert into MEMBERBOARD (bno, btitle, bcontent, bwriter, bdate)
-values (memberboard_seq.nextval, '¾È³ç¿ä', 'Áı¿¡ °¡¼¼¿ä ¿À´ÃÀº ±İ¿äÀÏÀÌ¿¡¿ä', 'kkw', sysdate)
+values (memberboard_seq.nextval, 'ì•ˆë…•ìš”', 'ì§‘ì— ê°€ì„¸ìš” ì˜¤ëŠ˜ì€ ê¸ˆìš”ì¼ì´ì—ìš”', 'kkw', sysdate)
 
 insert into MEMBERBOARD (bno, btitle, bcontent, bwriter, bdate)
-values (memberboard_seq.nextval, 'Áı°¡ÀÚ', 'Áı¿¡ °¡¼¼¿ä ¿À´ÃÀº ±İ¿äÀÏÀÌ¿¡¿ä', 'ksa', sysdate)
+values (memberboard_seq.nextval, 'ì§‘ê°€ì', 'ì§‘ì— ê°€ì„¸ìš” ì˜¤ëŠ˜ì€ ê¸ˆìš”ì¼ì´ì—ìš”', 'ksa', sysdate)
 
 insert into MEMBERBOARD (bno, btitle, bcontent, bwriter, bdate)
-values (memberboard_seq.nextval, '±İ¿äÀÏ', 'Áı¿¡ °¡¼¼¿ä ¿À´ÃÀº ±İ¿äÀÏÀÌ¿¡¿ä', 'kim', sysdate)
+values (memberboard_seq.nextval, 'ê¸ˆìš”ì¼', 'ì§‘ì— ê°€ì„¸ìš” ì˜¤ëŠ˜ì€ ê¸ˆìš”ì¼ì´ì—ìš”', 'kim', sysdate)
 
 select * from memberboard

@@ -9,7 +9,7 @@ import JDBCTest.service.MemberService;
 
 public class MemberExam {
 	
-	// ÇÊµå
+	// í•„ë“œ
 	public static Scanner inputStr = new Scanner(System.in);
 	public static Scanner inputInt = new Scanner(System.in);
 	public static MemberService memberservice = new MemberService();
@@ -21,14 +21,14 @@ public class MemberExam {
 		
 		
 		while (run) {
-			System.out.println(" ---- MBC ÇÁ·Î±×·¥ ----");
+			System.out.println(" ---- MBC í”„ë¡œê·¸ë¨ ----");
 			if(session != null) {
-				System.out.println("ÇöÀç ³ªÀÇ °èÁ¤ : " + session.getId());	
+				System.out.println("í˜„ì¬ ë‚˜ì˜ ê³„ì • : " + session.getId());	
 			}
-			System.out.println("1. ·Î±×ÀÎ");
-			System.out.println("2. È¸¿ø °ü¸®");
-			System.out.println("3. °Ô½ÃÆÇ");
-			System.out.println("4. ÇÁ·Î±×·¥ Á¾·á");
+			System.out.println("1. ë¡œê·¸ì¸");
+			System.out.println("2. íšŒì› ê´€ë¦¬");
+			System.out.println("3. ê²Œì‹œíŒ");
+			System.out.println("4. í”„ë¡œê·¸ë¨ ì¢…ë£Œ");
 			System.out.print(">>> ");
 			String select = inputStr.next();
 			
@@ -38,33 +38,33 @@ public class MemberExam {
 			switch(select) {
 			
 			case "1":
-				System.out.println("·Î±×ÀÎ ÆäÀÌÁö·Î ÀÌµ¿ÇÕ´Ï´Ù.");
+				System.out.println("ë¡œê·¸ì¸ í˜ì´ì§€ë¡œ ì´ë™í•©ë‹ˆë‹¤.");
 				session = memberservice.login(inputStr);
 				break;
 			
 			case "2":
-				System.out.println("È¸¿ø °ü¸® ÆäÀÌÁö·Î ÀÌµ¿ÇÕ´Ï´Ù.");
+				System.out.println("íšŒì› ê´€ë¦¬ í˜ì´ì§€ë¡œ ì´ë™í•©ë‹ˆë‹¤.");
 				memberservice.subMenu(inputStr, inputInt, session);
 				break;
 				
 			case "3" :
 				if(session != null) {
-					System.out.println("°Ô½ÃÆÇ ÆäÀÌÁö·Î ÀÌµ¿ÇÕ´Ï´Ù.");
+					System.out.println("ê²Œì‹œíŒ í˜ì´ì§€ë¡œ ì´ë™í•©ë‹ˆë‹¤.");
 					memberboardservice.menu(inputStr, inputInt, session);
 				}else {
-					System.out.println("·Î±×ÀÎÀÌ ÇÊ¿äÇÑ ¼­ºñ½ºÀÔ´Ï´Ù.");
+					System.out.println("ë¡œê·¸ì¸ì´ í•„ìš”í•œ ì„œë¹„ìŠ¤ì…ë‹ˆë‹¤.");
 				}
 				
 				break;
 				
 			case "4" :
-				System.out.println("ÇÁ·Î±×·¥À» Á¾·áÇÕ´Ï´Ù.");
+				System.out.println("í”„ë¡œê·¸ë¨ì„ ì¢…ë£Œí•©ë‹ˆë‹¤.");
 				session = null;
 				run = false;
 				break;
 			
 			default :
-				System.out.println("1~4ÀÇ °ªÀ» ÀÔ·ÂÇÏ¼¼¿ä.");
+				System.out.println("1~4ì˜ ê°’ì„ ì…ë ¥í•˜ì„¸ìš”.");
 				
 			}
 			

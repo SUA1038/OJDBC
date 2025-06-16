@@ -1,4 +1,4 @@
-create user membertest identified by membertest ; -- ÀÏ¹İ °èÁ¤ »ı¼º
-grant resource, connect to membertest; -- ±ÇÇÑ ºÎ¿©
-alter user membertest default tablespace users ; -- db ¿¬°á
-alter user membertest temporary tablespace temp ; -- ÀÓ½Ã Å×ÀÌºí
+create user membertest identified by membertest ; -- ì¼ë°˜ ê³„ì • ìƒì„±
+grant resource, connect to membertest; -- ê¶Œí•œ ë¶€ì—¬
+alter user membertest default tablespace users ; -- db ì—°ê²°
+alter user membertest temporary tablespace temp ; -- ì„ì‹œ í…Œì´ë¸”
