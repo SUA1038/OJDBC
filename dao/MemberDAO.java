@@ -14,7 +14,7 @@ import JDBCTest.dto.MemberDTO;
 
 public class MemberDAO {
 	
-	// °´Ã¼
+	// ê°ì²´
 	public MemberDTO memberDTO = new MemberDTO();
 	public Connection connection = null;
 	public Statement statement = null;
@@ -22,7 +22,7 @@ public class MemberDAO {
 	public ResultSet resultSet = null;
 	public int result = 0;
 	
-	// ±âº» »ı¼ºÀÚ
+	// ê¸°ë³¸ ìƒì„±ì
 	public MemberDAO() {
 		
 		
@@ -31,22 +31,22 @@ public class MemberDAO {
 			Class.forName("oracle.jdbc.driver.OracleDriver");
 			connection = DriverManager.getConnection("jdbc:oracle:thin:@192.168.0.167:1521:xe", "membertest", "membertest");
 		} catch (ClassNotFoundException e) {
-			System.out.println("µå¶óÀÌ¹ö ÀÌ¸§ÀÌ³ª ojdbc6.jar ÆÄÀÏ¿¡ ¿À·ù°¡ ¹ß»ıÇß½À´Ï´Ù.");
+			System.out.println("ë“œë¼ì´ë²„ ì´ë¦„ì´ë‚˜ ojdbc6.jar íŒŒì¼ì— ì˜¤ë¥˜ê°€ ë°œìƒí–ˆìŠµë‹ˆë‹¤.");
 			e.printStackTrace();
-			System.exit(0); // °­Á¦Á¾·á
+			System.exit(0); // ê°•ì œì¢…ë£Œ
 		}catch (SQLException e) {
-			System.out.println("URL, ID È¤Àº PW¿¡ ¿À·ù°¡ ¹ß»ıÇß½À´Ï´Ù. MemberDAOÀÇ ±âº» »ı¼ºÀÚ¸¦ È®ÀÎÇÏ¼¼¿ä.");
+			System.out.println("URL, ID í˜¹ì€ PWì— ì˜¤ë¥˜ê°€ ë°œìƒí–ˆìŠµë‹ˆë‹¤. MemberDAOì˜ ê¸°ë³¸ ìƒì„±ìë¥¼ í™•ì¸í•˜ì„¸ìš”.");
 			e.printStackTrace();
-			System.exit(0); // °­Á¦Á¾·á
+			System.exit(0); // ê°•ì œì¢…ë£Œ
 		}
 		
-	} // ±âº» »ı¼ºÀÚ Á¾·á
+	} // ê¸°ë³¸ ìƒì„±ì ì¢…ë£Œ
 	
 	
 	
-	// ¸Ş¼­µå
+	// ë©”ì„œë“œ
 	public MemberDTO login(String inputID, String inputPW) throws SQLException {
-		// ·Î±×ÀÎ
+		// ë¡œê·¸ì¸
 		MemberDTO session = null;
 		
 		try {
@@ -63,28 +63,28 @@ public class MemberDAO {
 				session.setId(resultSet.getString("id"));
 				session.setPw(resultSet.getString("pw"));
 				session.setRegidate(resultSet.getDate("regidate"));
-				System.out.println("·Î±×ÀÎ ¼º°ø. ¾î¼­¿À¼¼¿ä.");
+				System.out.println("ë¡œê·¸ì¸ ì„±ê³µ. ì–´ì„œì˜¤ì„¸ìš”.");
 				connection.commit();
 				return session;
 			}else {
-				System.out.println("·Î±×ÀÎ ½ÇÆĞ. ID È¤Àº PW ¿À·ù.");
+				System.out.println("ë¡œê·¸ì¸ ì‹¤íŒ¨. ID í˜¹ì€ PW ì˜¤ë¥˜.");
 				connection.rollback();
-			} // if¹® Á¾·á
+			} // ifë¬¸ ì¢…ë£Œ
 			
 		} catch (SQLException e) {
-			System.out.println("¿À·ù ¹ß»ı : login ¸Ş¼­µå È¤Àº sql ¹®À» È®ÀÎÇÏ¼¼¿ä.");
+			System.out.println("ì˜¤ë¥˜ ë°œìƒ : login ë©”ì„œë“œ í˜¹ì€ sql ë¬¸ì„ í™•ì¸í•˜ì„¸ìš”.");
 			e.printStackTrace();
 		} finally {
 			preparedStatement.close();
 			resultSet.close();
-		} // try Á¾·á
+		} // try ì¢…ë£Œ
 		return session;
-	} // ·Î±×ÀÎ ¸Ş¼­µå Á¾·á
+	} // ë¡œê·¸ì¸ ë©”ì„œë“œ ì¢…ë£Œ
 
 
 
 	public void insert(MemberDTO memberDTO) throws SQLException {
-		// È¸¿ø°¡ÀÔ ¸Ş¼­µå ½ÃÀÛ
+		// íšŒì›ê°€ì… ë©”ì„œë“œ ì‹œì‘
 
 		try {	
 			String sql = "insert into membertable(mno, bwriter, id, pw, regidate) "
@@ -93,42 +93,42 @@ public class MemberDAO {
 			preparedStatement.setString(1, memberDTO.getBwriter());
 			preparedStatement.setString(2, memberDTO.getId());
 			preparedStatement.setString(3, memberDTO.getPw());
-			// System.out.println("Äõ¸® È®ÀÎ : " + sql); // Äõ¸® È®ÀÎ¿ë. ¿Ï¼º ½Ã »èÁ¦***
+			// System.out.println("ì¿¼ë¦¬ í™•ì¸ : " + sql); // ì¿¼ë¦¬ í™•ì¸ìš©. ì™„ì„± ì‹œ ì‚­ì œ***
 			
 			result = preparedStatement.executeUpdate();
 			
 			if(result > 0) {
-				System.out.println("È¸¿ø °¡ÀÔ¿¡ ¼º°øÇß½À´Ï´Ù.");
+				System.out.println("íšŒì› ê°€ì…ì— ì„±ê³µí–ˆìŠµë‹ˆë‹¤.");
 				connection.commit();
 			}else {
-				// System.out.println("Äõ¸® ½ÇÇà °á°ú : " + result); // ¿Ï¼º ½Ã »èÁ¦ ***
-				System.out.println("È¸¿ø °¡ÀÔ¿¡ ½ÇÆĞÇß½À´Ï´Ù.");
+				// System.out.println("ì¿¼ë¦¬ ì‹¤í–‰ ê²°ê³¼ : " + result); // ì™„ì„± ì‹œ ì‚­ì œ ***
+				System.out.println("íšŒì› ê°€ì…ì— ì‹¤íŒ¨í–ˆìŠµë‹ˆë‹¤.");
 				connection.rollback();
-			} // if¹® Á¾·á
+			} // ifë¬¸ ì¢…ë£Œ
 		} catch (SQLException e) {
-			System.out.println("¿¹¿Ü ¹ß»ı : insert() ¸Ş¼­µåÀÇ Äõ¸®¹®À» È®ÀÎÇÏ¼¼¿ä.");
+			System.out.println("ì˜ˆì™¸ ë°œìƒ : insert() ë©”ì„œë“œì˜ ì¿¼ë¦¬ë¬¸ì„ í™•ì¸í•˜ì„¸ìš”.");
 			e.printStackTrace();
 		}finally {
 			preparedStatement.close();
-		} // try Á¾·á
+		} // try ì¢…ë£Œ
 		
-	} // È¸¿ø°¡ÀÔ ¸Ş¼­µå Á¾·á
+	} // íšŒì›ê°€ì… ë©”ì„œë“œ ì¢…ë£Œ
 
 
 
 
 	public void update(Scanner inputStr, String updateID) throws SQLException {
-		// È¸¿ø Á¤º¸ ¾÷µ¥ÀÌÆ®
+		// íšŒì› ì •ë³´ ì—…ë°ì´íŠ¸
 		MemberDTO memberDTO = new MemberDTO();
-		System.out.println("¼öÁ¤ÇÒ ÀÌ¸§À» ÀÛ¼ºÇÏ¼¼¿ä.");
+		System.out.println("ìˆ˜ì •í•  ì´ë¦„ì„ ì‘ì„±í•˜ì„¸ìš”.");
 		System.out.print(">>> ");
 		memberDTO.setBwriter(inputStr.next());
 
-		System.out.println("¼öÁ¤ÇÒ ID¸¦ ÀÛ¼ºÇÏ¼¼¿ä.");
+		System.out.println("ìˆ˜ì •í•  IDë¥¼ ì‘ì„±í•˜ì„¸ìš”.");
 		System.out.print(">>> ");
 		memberDTO.setId(inputStr.next());
 
-		System.out.println("¼öÁ¤ÇÒ PW¸¦ ÀÛ¼ºÇÏ¼¼¿ä.");
+		System.out.println("ìˆ˜ì •í•  PWë¥¼ ì‘ì„±í•˜ì„¸ìš”.");
 		System.out.print(">>> ");
 		memberDTO.setPw(inputStr.next());
 
@@ -143,26 +143,26 @@ public class MemberDAO {
 			result = preparedStatement.executeUpdate();
 
 			if (result > 0) {
-				System.out.println(result + "°³ÀÇ Á¤º¸°¡ ¼öÁ¤µÇ¾ú½À´Ï´Ù.");
-				connection.commit(); // ¿µ±¸ÀúÀå
+				System.out.println(result + "ê°œì˜ ì •ë³´ê°€ ìˆ˜ì •ë˜ì—ˆìŠµë‹ˆë‹¤.");
+				connection.commit(); // ì˜êµ¬ì €ì¥
 			} else {
-				System.out.println("¼öÁ¤µÇÁö ¾Ê¾Ò½À´Ï´Ù.");
+				System.out.println("ìˆ˜ì •ë˜ì§€ ì•Šì•˜ìŠµë‹ˆë‹¤.");
 				connection.rollback();
 			}
 		} catch (SQLException e) {
-			System.out.println("¿¹¿Ü ¹ß»ı : update() ¸Ş¼­µåÀÇ sql¹®À» È®ÀÎÇÏ¼¼¿ä.");
+			System.out.println("ì˜ˆì™¸ ë°œìƒ : update() ë©”ì„œë“œì˜ sqlë¬¸ì„ í™•ì¸í•˜ì„¸ìš”.");
 			e.printStackTrace();
 		}finally {
 			preparedStatement.close();
 		}	
 
 		
-	} // È¸¿ø Á¤º¸ ¾÷µ¥ÀÌÆ® ¸Ş¼­µå Á¾·á
+	} // íšŒì› ì •ë³´ ì—…ë°ì´íŠ¸ ë©”ì„œë“œ ì¢…ë£Œ
 
 
 
 	public void readAll() throws SQLException {
-		// ÀüÃ¼ È¸¿ø Á¶È¸ ¸Ş¼­µå
+		// ì „ì²´ íšŒì› ì¡°íšŒ ë©”ì„œë“œ
 		
 		try {
 			String sql = "select mno, bwriter, regidate from membertable order by regidate desc";
@@ -170,87 +170,87 @@ public class MemberDAO {
 			statement = connection.createStatement();
 			resultSet = statement.executeQuery(sql);
 			
-			System.out.println("¹øÈ£\t È¸¿ø¸í\t °¡ÀÔ³¯\t");
+			System.out.println("ë²ˆí˜¸\t íšŒì›ëª…\t ê°€ì…ë‚ \t");
 			while(resultSet.next()) {
 				System.out.print(resultSet.getInt("mno") + "\t");
 				System.out.print(resultSet.getString("bwriter") + "\t");
 				System.out.println(resultSet.getDate("regidate") + "\t");
 			}
 		} catch (SQLException e) {
-			System.out.println("¿¹¿Ü ¹ß»ı : readAll()¸Ş¼­µåÀÇ Äõ¸®¹®À» È®ÀÎÇÏ¼¼¿ä.");
+			System.out.println("ì˜ˆì™¸ ë°œìƒ : readAll()ë©”ì„œë“œì˜ ì¿¼ë¦¬ë¬¸ì„ í™•ì¸í•˜ì„¸ìš”.");
 			e.printStackTrace();
 		}finally {
 			resultSet.close();
 			statement.close();
 		}
 		
-	} // ÀüÃ¼ È¸¿ø Á¶È¸ ¸Ş¼­µå Á¾·á
+	} // ì „ì²´ íšŒì› ì¡°íšŒ ë©”ì„œë“œ ì¢…ë£Œ
 
 
 
 	public void delete(Scanner inputStr) throws SQLException {
-		// È¸¿ø Å»Åğ ¸Ş¼­µå
+		// íšŒì› íƒˆí‡´ ë©”ì„œë“œ
 		MemberDTO memberDTO = new MemberDTO();
-		System.out.println("Å»Åğ¸¦ ÁøÇàÇÒ ID¸¦ ÀÔ·ÂÇÏ¼¼¿ä.");
+		System.out.println("íƒˆí‡´ë¥¼ ì§„í–‰í•  IDë¥¼ ì…ë ¥í•˜ì„¸ìš”.");
 		System.out.print(">>> ");
 		String delID = inputStr.next();
 		
 		try {
 			String sql = "update membertable set bwriter = ?, pw = ? , regidate = sysdate where id = ?";
 			preparedStatement = connection.prepareStatement(sql);
-			preparedStatement.setString(1, "Å»ÅğÈ¸¿ø");
-			preparedStatement.setString(2, "0000"); // °øµ¿ pw·Î
+			preparedStatement.setString(1, "íƒˆí‡´íšŒì›");
+			preparedStatement.setString(2, "0000"); // ê³µë™ pwë¡œ
 			preparedStatement.setString(3, delID);
 			
 			result = preparedStatement.executeUpdate();
 
 			if (result > 0) {
-				System.out.println("È¸¿ø Å»Åğ¿¡ ¼º°øÇß½À´Ï´Ù.");
-				connection.commit(); // ¿µ±¸ÀúÀå
+				System.out.println("íšŒì› íƒˆí‡´ì— ì„±ê³µí–ˆìŠµë‹ˆë‹¤.");
+				connection.commit(); // ì˜êµ¬ì €ì¥
 			} else {
-				System.out.println("Å»Åğ ½ÇÆĞ.");
+				System.out.println("íƒˆí‡´ ì‹¤íŒ¨.");
 				connection.rollback();
 			}
 		} catch (SQLException e) {
-			System.out.println("¿¹¿Ü ¹ß»ı : delete ¸Ş¼­µå¿Í sql¹®À» È®ÀÎÇÏ¼¼¿ä.");
+			System.out.println("ì˜ˆì™¸ ë°œìƒ : delete ë©”ì„œë“œì™€ sqlë¬¸ì„ í™•ì¸í•˜ì„¸ìš”.");
 			e.printStackTrace();
 		}finally {
 			preparedStatement.close();
 		}
 				
 		
-	} // È¸¿ø Å»Åğ ¸Ş¼­µå Á¾·á
+	} // íšŒì› íƒˆí‡´ ë©”ì„œë“œ ì¢…ë£Œ
 
 
 
 	public void readOne(String readID) throws SQLException {
-		// »ó¼¼ Á¤º¸ º¸±â ¸Ş¼­µå
+		// ìƒì„¸ ì •ë³´ ë³´ê¸° ë©”ì„œë“œ
 		
 		try {
 			String sql = "select mno, bwriter, id, regidate from membertable where id = ?";
 			preparedStatement = connection.prepareStatement(sql);
 			preparedStatement.setString(1, readID); 
-			resultSet = preparedStatement.executeQuery(); // Äõ¸®¹® ½ÇÇà ÈÄ °á°ú¸¦ Ç¥·Î ¹Ş´Â´Ù.
+			resultSet = preparedStatement.executeQuery(); // ì¿¼ë¦¬ë¬¸ ì‹¤í–‰ í›„ ê²°ê³¼ë¥¼ í‘œë¡œ ë°›ëŠ”ë‹¤.
 
-			if (resultSet.next()) { // °Ë»ö °á°ú°¡ ÀÖÀ» °æ¿ì
-				MemberDTO memberDTO = new MemberDTO(); // ºó °´Ã¼ »ı¼º
+			if (resultSet.next()) { // ê²€ìƒ‰ ê²°ê³¼ê°€ ìˆì„ ê²½ìš°
+				MemberDTO memberDTO = new MemberDTO(); // ë¹ˆ ê°ì²´ ìƒì„±
 
 				memberDTO.setMno(resultSet.getInt("mno"));
 				memberDTO.setBwriter(resultSet.getString("bwriter"));
 				memberDTO.setId(resultSet.getString("id"));
 				memberDTO.setRegidate(resultSet.getDate("regidate"));
-				// µ¥ÀÌÅÍ º£ÀÌ½º¿¡ ÀÖ´Â ÇàÀ» °´Ã¼¿¡ ³Ö±â
+				// ë°ì´í„° ë² ì´ìŠ¤ì— ìˆëŠ” í–‰ì„ ê°ì²´ì— ë„£ê¸°
 				System.out.println("==========================");
-				System.out.println("¹øÈ£ : " + memberDTO.getMno());
-				System.out.println("ÀÌ¸§ : " + memberDTO.getBwriter());
+				System.out.println("ë²ˆí˜¸ : " + memberDTO.getMno());
+				System.out.println("ì´ë¦„ : " + memberDTO.getBwriter());
 				System.out.println("id : " + memberDTO.getId());
-				System.out.println("°¡ÀÔÀÏ : " + memberDTO.getRegidate());
+				System.out.println("ê°€ì…ì¼ : " + memberDTO.getRegidate());
 				System.out.println("==========================");
-			} else { // °Ë»ö °á°ú°¡ ¾øÀ» °æ¿ì
-				System.out.println("ÇØ´çÇÏ´Â ID°¡ Á¸ÀçÇÏÁö ¾Ê½À´Ï´Ù.");
-			} // if¹® Á¾·á
+			} else { // ê²€ìƒ‰ ê²°ê³¼ê°€ ì—†ì„ ê²½ìš°
+				System.out.println("í•´ë‹¹í•˜ëŠ” IDê°€ ì¡´ì¬í•˜ì§€ ì•ŠìŠµë‹ˆë‹¤.");
+			} // ifë¬¸ ì¢…ë£Œ
 		} catch (SQLException e) {
-			System.out.println("¿¹¿Ü ¹ß»ı : readOne() ¸Ş¼­µå¸¦ È®ÀÎÇÏ¼¼¿ä.");
+			System.out.println("ì˜ˆì™¸ ë°œìƒ : readOne() ë©”ì„œë“œë¥¼ í™•ì¸í•˜ì„¸ìš”.");
 			e.printStackTrace();
 		} finally {
 			resultSet.close();
@@ -258,9 +258,9 @@ public class MemberDAO {
 		}
 		
 		
-	} // »ó¼¼ Á¤º¸ º¸±â ¸Ş¼­µå Á¾·á
+	} // ìƒì„¸ ì •ë³´ ë³´ê¸° ë©”ì„œë“œ ì¢…ë£Œ
 
 	
 	
 	
-} // Å¬·¡½º Á¾·á
+} // í´ë˜ìŠ¤ ì¢…ë£Œ

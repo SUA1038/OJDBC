@@ -11,125 +11,125 @@ public class MemberService {
 	public static MemberDAO memberDAO = new MemberDAO();
 
 	public MemberDTO subMenu(Scanner inputStr, Scanner inputInt, MemberDTO session) throws SQLException {
-		// ºÎ¸Ş´º
+		// ë¶€ë©”ë‰´
 		boolean subRun = true;
 		
 		while (subRun) {
-			System.out.println("1. È¸¿ø °¡ÀÔ");
-			System.out.println("2. È¸¿ø Á¶È¸");
-			System.out.println("3. È¸¿ø Á¤º¸ ¼öÁ¤");
-			System.out.println("4. È¸¿ø Å»Åğ");
-			System.out.println("5. ¸ŞÀÎ ¸Ş´º·Î");
+			System.out.println("1. íšŒì› ê°€ì…");
+			System.out.println("2. íšŒì› ì¡°íšŒ");
+			System.out.println("3. íšŒì› ì •ë³´ ìˆ˜ì •");
+			System.out.println("4. íšŒì› íƒˆí‡´");
+			System.out.println("5. ë©”ì¸ ë©”ë‰´ë¡œ");
 			System.out.print(">>> ");
 			String subSelect = inputStr.next();
 
 			switch (subSelect) {
 			case "1":
-				System.out.println("È¸¿ø°¡ÀÔ ÆäÀÌÁö·Î ÀÌµ¿ÇÕ´Ï´Ù.");
+				System.out.println("íšŒì›ê°€ì… í˜ì´ì§€ë¡œ ì´ë™í•©ë‹ˆë‹¤.");
 				insert(memberDAO, inputStr);
 				break;
 
 			case "2":
-				System.out.println("È¸¿ø Á¶È¸ ÆäÀÌÁö·Î ÀÌµ¿ÇÕ´Ï´Ù.");
+				System.out.println("íšŒì› ì¡°íšŒ í˜ì´ì§€ë¡œ ì´ë™í•©ë‹ˆë‹¤.");
 				if(session != null) {
 					readAll(memberDAO, inputStr);	
 				}else {
-					System.out.println("·Î±×ÀÎ ÈÄ ÀÌ¿ë °¡´ÉÇÑ ¼­ºñ½ºÀÔ´Ï´Ù.");
+					System.out.println("ë¡œê·¸ì¸ í›„ ì´ìš© ê°€ëŠ¥í•œ ì„œë¹„ìŠ¤ì…ë‹ˆë‹¤.");
 				}
 				
 				break;
 
 			case "3":
-				System.out.println("È¸¿ø Á¤º¸ ¼öÁ¤ ÆäÀÌÁö·Î ÀÌµ¿ÇÕ´Ï´Ù.");
+				System.out.println("íšŒì› ì •ë³´ ìˆ˜ì • í˜ì´ì§€ë¡œ ì´ë™í•©ë‹ˆë‹¤.");
 				if(session != null) {
 					update(memberDAO, inputStr);	
 				}else {
-					System.out.println("·Î±×ÀÎ ÈÄ ÀÌ¿ë °¡´ÉÇÑ ¼­ºñ½ºÀÔ´Ï´Ù.");
+					System.out.println("ë¡œê·¸ì¸ í›„ ì´ìš© ê°€ëŠ¥í•œ ì„œë¹„ìŠ¤ì…ë‹ˆë‹¤.");
 				}
 				
 				break;
 
 			case "4":
-				System.out.println("È¸¿ø Å»Åğ ÆäÀÌÁö·Î ÀÌµ¿ÇÕ´Ï´Ù.");
+				System.out.println("íšŒì› íƒˆí‡´ í˜ì´ì§€ë¡œ ì´ë™í•©ë‹ˆë‹¤.");
 				if(session != null) {
 					delete(memberDAO, inputInt, inputInt);	
 				}else {
-					System.out.println("·Î±×ÀÎ ÈÄ ÀÌ¿ë °¡´ÉÇÑ ¼­ºñ½ºÀÔ´Ï´Ù.");
+					System.out.println("ë¡œê·¸ì¸ í›„ ì´ìš© ê°€ëŠ¥í•œ ì„œë¹„ìŠ¤ì…ë‹ˆë‹¤.");
 				}
 				
 				break;
 
 			case "5":
-				System.out.println("¸ŞÀÎ ¸Ş´º·Î µ¹¾Æ°©´Ï´Ù.");
+				System.out.println("ë©”ì¸ ë©”ë‰´ë¡œ ëŒì•„ê°‘ë‹ˆë‹¤.");
 				subRun = false;
 				break;
 
 			default:
-				System.out.println("1~6ÀÇ °ªÀ» ÀÔ·ÂÇÏ¼¼¿ä.");
+				System.out.println("1~6ì˜ ê°’ì„ ì…ë ¥í•˜ì„¸ìš”.");
 			}
 
-		} // ºÎ¸Ş´º while¹® Á¾·á
+		} // ë¶€ë©”ë‰´ whileë¬¸ ì¢…ë£Œ
 
 		return session;
 		
-	} // ºÎ¸Ş´º ¸Ş¼­µå Á¾·á
+	} // ë¶€ë©”ë‰´ ë©”ì„œë“œ ì¢…ë£Œ
 
 	
 	
 	private void delete(MemberDAO memberDAO, Scanner inputInt, Scanner inputStr) throws SQLException {
-		// È¸¿ø Å»Åğ
-		System.out.println("È¸¿ø Å»Åğ ÈÄ¿¡µµ Á¤º¸ ¹× È°µ¿ ³»¿ªÀº ³²½À´Ï´Ù.");
-		System.out.println("1. Å»Åğ ÁøÇà");
-		System.out.println("2. µ¹¾Æ°¡±â");
+		// íšŒì› íƒˆí‡´
+		System.out.println("íšŒì› íƒˆí‡´ í›„ì—ë„ ì •ë³´ ë° í™œë™ ë‚´ì—­ì€ ë‚¨ìŠµë‹ˆë‹¤.");
+		System.out.println("1. íƒˆí‡´ ì§„í–‰");
+		System.out.println("2. ëŒì•„ê°€ê¸°");
 		System.out.print(">>> ");
 		int dSelect = inputInt.nextInt();
 		
 		if(dSelect == 1) {
 			memberDAO.delete(inputStr);
 		}else if(dSelect == 2) {
-			System.out.println("¸Ş´º·Î µ¹¾Æ°©´Ï´Ù.");
+			System.out.println("ë©”ë‰´ë¡œ ëŒì•„ê°‘ë‹ˆë‹¤.");
 		}else {
-			System.out.println("1~2ÀÇ °ªÀ» ÀÔ·ÂÇÏ¼¼¿ä.");
+			System.out.println("1~2ì˜ ê°’ì„ ì…ë ¥í•˜ì„¸ìš”.");
 		}
-	} // È¸¿ø Å»Åğ Á¾·á
+	} // íšŒì› íƒˆí‡´ ì¢…ë£Œ
 
 
 
 	private void readAll(MemberDAO memberDAO, Scanner inputStr) throws SQLException {
-		// ÀüÃ¼ È¸¿ø Á¶È¸
+		// ì „ì²´ íšŒì› ì¡°íšŒ
 		System.out.println("==========================");
-		System.out.println("======== È¸¿ø ¸ñ·Ï========");
+		System.out.println("======== íšŒì› ëª©ë¡========");
 		memberDAO.readAll();
 		System.out.println("==========================");
 		
-		System.out.println("ÀÚ¼¼È÷ È®ÀÎÇÒ È¸¿øÀÇ ID¸¦ ÀÔ·ÂÇØÁÖ¼¼¿ä. ¾øÀ» °æ¿ì '0'À» ÀÔ·ÂÇÏ¼¼¿ä.");
+		System.out.println("ìì„¸íˆ í™•ì¸í•  íšŒì›ì˜ IDë¥¼ ì…ë ¥í•´ì£¼ì„¸ìš”. ì—†ì„ ê²½ìš° '0'ì„ ì…ë ¥í•˜ì„¸ìš”.");
 		System.out.print(">>> ");
 		String readID = inputStr.next();
 		String exit = "0";
 		if(readID.equals(exit)) {
-			System.out.println("¸Ş´º·Î ÀÌµ¿ÇÕ´Ï´Ù.");
+			System.out.println("ë©”ë‰´ë¡œ ì´ë™í•©ë‹ˆë‹¤.");
 		}else {
 			memberDAO.readOne(readID);	
 		}
 		
 		
-	} // ÀüÃ¼ È¸¿ø Á¶È¸ Á¾·á
+	} // ì „ì²´ íšŒì› ì¡°íšŒ ì¢…ë£Œ
 
 	
 	
 	private void update(MemberDAO memberDAO, Scanner inputStr) throws SQLException {
-		// È¸¿ø Á¤º¸ ¼öÁ¤
-		System.out.println("Á¤º¸¸¦ ¼öÁ¤ÇÒ °èÁ¤ÀÇ ID¸¦ ÀÔ·ÂÇÏ¼¼¿ä.");
+		// íšŒì› ì •ë³´ ìˆ˜ì •
+		System.out.println("ì •ë³´ë¥¼ ìˆ˜ì •í•  ê³„ì •ì˜ IDë¥¼ ì…ë ¥í•˜ì„¸ìš”.");
 		System.out.print(">>> ");
 		String updateID = inputStr.next();
 
 		memberDAO.update(inputStr, updateID);
-	} // È¸¿ø Á¤º¸ ¼öÁ¤ Á¾·á
+	} // íšŒì› ì •ë³´ ìˆ˜ì • ì¢…ë£Œ
 
 	
 	
 	public MemberDTO login(Scanner inputStr) throws SQLException {
-		// ·Î±×ÀÎ
+		// ë¡œê·¸ì¸
 		MemberDAO memberDAO = new MemberDAO();
 		
 		System.out.print("ID : ");
@@ -140,14 +140,14 @@ public class MemberService {
 
 		return memberDAO.login(inputID, inputPW);
 
-	} // ·Î±×ÀÎ ¸Ş¼­µå Á¾·á
+	} // ë¡œê·¸ì¸ ë©”ì„œë“œ ì¢…ë£Œ
 
 	private void insert(MemberDAO memberDAO, Scanner inputStr) throws SQLException {
-		// È¸¿ø°¡ÀÔ
+		// íšŒì›ê°€ì…
 
 		MemberDTO memberDTO = new MemberDTO();
 
-		System.out.print("ÀÌ¸§ : ");
+		System.out.print("ì´ë¦„ : ");
 		memberDTO.setBwriter(inputStr.next());
 
 		System.out.print("ID : ");
@@ -158,6 +158,6 @@ public class MemberService {
 
 		memberDAO.insert(memberDTO);
 
-	} // È¸¿ø°¡ÀÔ ¸Ş¼­µå Á¾·á
+	} // íšŒì›ê°€ì… ë©”ì„œë“œ ì¢…ë£Œ
 
-} // Å¬·¡½º Á¾·á
+} // í´ë˜ìŠ¤ ì¢…ë£Œ

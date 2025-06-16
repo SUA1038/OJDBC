@@ -13,7 +13,7 @@ import JDBCTest.dto.MemberDTO;
 
 public class MemberBoardDAO {
 
-	// °´Ã¼
+	// ê°ì²´
 	public MemberDTO memberDTO = new MemberDTO();
 	public Connection connection = null;
 	public Statement statement = null;
@@ -21,7 +21,7 @@ public class MemberBoardDAO {
 	public ResultSet resultSet = null;
 	public int result = 0;
 	
-	// ±âº» »ı¼ºÀÚ
+	// ê¸°ë³¸ ìƒì„±ì
 	public MemberBoardDAO() {
 		
 		
@@ -30,19 +30,19 @@ public class MemberBoardDAO {
 			Class.forName("oracle.jdbc.driver.OracleDriver");
 			connection = DriverManager.getConnection("jdbc:oracle:thin:@192.168.0.167:1521:xe", "membertest", "membertest");
 		} catch (ClassNotFoundException e) {
-			System.out.println("µå¶óÀÌ¹ö ÀÌ¸§ÀÌ³ª ojdbc6.jar ÆÄÀÏ¿¡ ¿À·ù°¡ ¹ß»ıÇß½À´Ï´Ù.");
+			System.out.println("ë“œë¼ì´ë²„ ì´ë¦„ì´ë‚˜ ojdbc6.jar íŒŒì¼ì— ì˜¤ë¥˜ê°€ ë°œìƒí–ˆìŠµë‹ˆë‹¤.");
 			e.printStackTrace();
-			System.exit(0); // °­Á¦Á¾·á
+			System.exit(0); // ê°•ì œì¢…ë£Œ
 		}catch (SQLException e) {
-			System.out.println("URL, ID È¤Àº PW¿¡ ¿À·ù°¡ ¹ß»ıÇß½À´Ï´Ù. MemberDAOÀÇ ±âº» »ı¼ºÀÚ¸¦ È®ÀÎÇÏ¼¼¿ä.");
+			System.out.println("URL, ID í˜¹ì€ PWì— ì˜¤ë¥˜ê°€ ë°œìƒí–ˆìŠµë‹ˆë‹¤. MemberDAOì˜ ê¸°ë³¸ ìƒì„±ìë¥¼ í™•ì¸í•˜ì„¸ìš”.");
 			e.printStackTrace();
-			System.exit(0); // °­Á¦Á¾·á
+			System.exit(0); // ê°•ì œì¢…ë£Œ
 		}
 		
-	} // ±âº» »ı¼ºÀÚ Á¾·á
+	} // ê¸°ë³¸ ìƒì„±ì ì¢…ë£Œ
 
 	public MemberDTO insertBoard(MemberBoardDTO memberBoardDTO, MemberDTO session) throws SQLException {
-		// °Ô½Ã±Û ÀÛ¼º ¸Ş¼­µå
+		// ê²Œì‹œê¸€ ì‘ì„± ë©”ì„œë“œ
 		
 		try {
 			String sql = "insert into memberboard(bno, btitle, bcontent, bwriter, bdate) values(board_seq.nextval, ?, ?, ?, sysdate)";
@@ -50,19 +50,19 @@ public class MemberBoardDAO {
 			preparedStatement.setString(1, memberBoardDTO.getBtitle());
 			preparedStatement.setString(2, memberBoardDTO.getBcontent());
 			preparedStatement.setString(3, session.getId());
-			// System.out.println("Äõ¸® È®ÀÎ : " + sql); // Äõ¸® È®ÀÎ¿ë ¿Ï¼ºº»¿¡¼± »èÁ¦ ***
+			// System.out.println("ì¿¼ë¦¬ í™•ì¸ : " + sql); // ì¿¼ë¦¬ í™•ì¸ìš© ì™„ì„±ë³¸ì—ì„  ì‚­ì œ ***
 			
 			result = preparedStatement.executeUpdate();
 			if(result>0) {
-				System.out.println(result + "°³ÀÇ °Ô½Ã¹°ÀÌ µî·ÏµÇ¾ú½À´Ï´Ù.");
+				System.out.println(result + "ê°œì˜ ê²Œì‹œë¬¼ì´ ë“±ë¡ë˜ì—ˆìŠµë‹ˆë‹¤.");
 				connection.commit();
 				return session;
 			}else {
-				// System.out.println("Äõ¸® ½ÇÇà °á°ú : " + result); // ***»èÁ¦¿¹Á¤
-				System.out.println("°Ô½Ã±ÛÀÌ µî·ÏµÇÁö ¾Ê¾Ò½À´Ï´Ù.");
-			} // if¹® Á¾·á
+				// System.out.println("ì¿¼ë¦¬ ì‹¤í–‰ ê²°ê³¼ : " + result); // ***ì‚­ì œì˜ˆì •
+				System.out.println("ê²Œì‹œê¸€ì´ ë“±ë¡ë˜ì§€ ì•Šì•˜ìŠµë‹ˆë‹¤.");
+			} // ifë¬¸ ì¢…ë£Œ
 		} catch (SQLException e) {
-			System.out.println("¿¹¿Ü ¹ß»ı : insertBoard()¸Ş¼­µåÀÇ Äõ¸®¹®À» ´Ù½Ã È®ÀÎÇÏ¼¼¿ä.");
+			System.out.println("ì˜ˆì™¸ ë°œìƒ : insertBoard()ë©”ì„œë“œì˜ ì¿¼ë¦¬ë¬¸ì„ ë‹¤ì‹œ í™•ì¸í•˜ì„¸ìš”.");
 			e.printStackTrace();
 		}finally {
 			preparedStatement.close();
@@ -70,19 +70,19 @@ public class MemberBoardDAO {
 		
 		return null;
 		
-	} // °Ô½Ã±Û ÀÛ¼º ¸Ş¼­µå Á¾·á
+	} // ê²Œì‹œê¸€ ì‘ì„± ë©”ì„œë“œ ì¢…ë£Œ
 	
 	
 
 	public void readAll() throws SQLException {
-		// ÀüÃ¼ °Ô½Ã±Û È®ÀÎ ¸Ş¼­µå
+		// ì „ì²´ ê²Œì‹œê¸€ í™•ì¸ ë©”ì„œë“œ
 		try {
 			String sql = "select bno, btitle, bwriter, bdate from memberboard order by bdate desc";
 
 			statement = connection.createStatement(); 
 			resultSet = statement.executeQuery(sql); 
 
-			System.out.println("¹øÈ£\t Á¦¸ñ\t ÀÛ¼ºÀÚ\t ÀÛ¼ºÀÏ\t");
+			System.out.println("ë²ˆí˜¸\t ì œëª©\t ì‘ì„±ì\t ì‘ì„±ì¼\t");
 			while (resultSet.next()) {
 				System.out.print(resultSet.getInt("bno") + "\t");
 				System.out.print(resultSet.getString("btitle") + "\t");
@@ -92,19 +92,19 @@ public class MemberBoardDAO {
 			}
 			System.out.println("==========================");
 		} catch (SQLException e) {
-			System.out.println("seletALL() ¸Ş¼­µåÀÇ Äõ¸®¹®ÀÌ Àß¸øµÇ¾ú½À´Ï´Ù.");
+			System.out.println("seletALL() ë©”ì„œë“œì˜ ì¿¼ë¦¬ë¬¸ì´ ì˜ëª»ë˜ì—ˆìŠµë‹ˆë‹¤.");
 			e.printStackTrace();
 		} finally {
 			resultSet.close();
-			statement.close(); // ¿­¸° °´Ã¼¸¦ ´İ¾Æ¾ß ´Ù¸¥ ¸Ş¼­µåµµ Á¤»ó ÀÛµ¿.
+			statement.close(); // ì—´ë¦° ê°ì²´ë¥¼ ë‹«ì•„ì•¼ ë‹¤ë¥¸ ë©”ì„œë“œë„ ì •ìƒ ì‘ë™.
 		}
 
-	} // ÀüÃ¼ °Ô½Ã±Û È®ÀÎ ¸Ş¼­µå Á¾·á
+	} // ì „ì²´ ê²Œì‹œê¸€ í™•ì¸ ë©”ì„œë“œ ì¢…ë£Œ
 	
 	
 	
 	public void readOne(String bno, MemberBoardDAO memberboardDAO) throws SQLException {
-		// °Ô½Ã±Û °Ë»ö Á¶È¸ ¸Ş¼­µå
+		// ê²Œì‹œê¸€ ê²€ìƒ‰ ì¡°íšŒ ë©”ì„œë“œ
 		
 		try {
 			String sql = "select bno, btitle, bcontent, bwriter, bdate from memberboard where bno = ?";
@@ -122,37 +122,37 @@ public class MemberBoardDAO {
 				memberboardDTO.setBdate(resultSet.getDate("bdate"));
 				
 				System.out.println("==========================");
-				System.out.println("¹øÈ£ : " + memberboardDTO.getBno());
-				System.out.println("Á¦¸ñ : " + memberboardDTO.getBtitle());
-				System.out.println("³»¿ë : " + memberboardDTO.getBcontent());
-				System.out.println("ÀÛ¼ºÀÚ : " + memberboardDTO.getBwriter());
-				System.out.println("ÀÛ¼ºÀÏ : " + memberboardDTO.getBdate());
-			} else { // °Ë»ö °á°ú°¡ ¾øÀ» °æ¿ì
-				System.out.println("ÇØ´çÇÏ´Â °Ô½Ã¹°ÀÌ Á¸ÀçÇÏÁö ¾Ê½À´Ï´Ù.");
-			} // if¹® Á¾·á
+				System.out.println("ë²ˆí˜¸ : " + memberboardDTO.getBno());
+				System.out.println("ì œëª© : " + memberboardDTO.getBtitle());
+				System.out.println("ë‚´ìš© : " + memberboardDTO.getBcontent());
+				System.out.println("ì‘ì„±ì : " + memberboardDTO.getBwriter());
+				System.out.println("ì‘ì„±ì¼ : " + memberboardDTO.getBdate());
+			} else { // ê²€ìƒ‰ ê²°ê³¼ê°€ ì—†ì„ ê²½ìš°
+				System.out.println("í•´ë‹¹í•˜ëŠ” ê²Œì‹œë¬¼ì´ ì¡´ì¬í•˜ì§€ ì•ŠìŠµë‹ˆë‹¤.");
+			} // ifë¬¸ ì¢…ë£Œ
 		} catch (SQLException e) {
-			System.out.println("¿¹¿Ü ¹ß»ı : readOne() ¸Ş¼­µå¸¦ È®ÀÎÇÏ¼¼¿ä.");
+			System.out.println("ì˜ˆì™¸ ë°œìƒ : readOne() ë©”ì„œë“œë¥¼ í™•ì¸í•˜ì„¸ìš”.");
 			e.printStackTrace();
 		} finally {
 			resultSet.close();
 			preparedStatement.close();
 		}
 		
-	} // °Ô½Ã±Û °Ë»ö Á¶È¸ ¸Ş¼­µå Á¾·á 
+	} // ê²Œì‹œê¸€ ê²€ìƒ‰ ì¡°íšŒ ë©”ì„œë“œ ì¢…ë£Œ 
 
 	
 	
 	
 	public void modify(Scanner inputStr, MemberBoardDAO memberboardDAO, String bno, MemberDTO session) throws SQLException {
-		// °Ô½Ã±Û ¼öÁ¤ ¸Ş¼­µå 
+		// ê²Œì‹œê¸€ ìˆ˜ì • ë©”ì„œë“œ 
 		   Scanner inputLine = new Scanner(System.in);
 		   MemberBoardDTO memberboardDTO = new MemberBoardDTO();
 
-			System.out.println("¼öÁ¤ÇÒ °Ô½Ã±ÛÀÇ Á¦¸ñÀ» ÀÔ·ÂÇÏ¼¼¿ä.");
+			System.out.println("ìˆ˜ì •í•  ê²Œì‹œê¸€ì˜ ì œëª©ì„ ì…ë ¥í•˜ì„¸ìš”.");
 			System.out.print(">>> ");
 			memberboardDTO.setBtitle(inputStr.next());
 
-			System.out.println("¼öÁ¤ÇÒ °Ô½Ã±Û ³»¿ëÀ» ÀÔ·ÂÇØÁÖ¼¼¿ä.");
+			System.out.println("ìˆ˜ì •í•  ê²Œì‹œê¸€ ë‚´ìš©ì„ ì…ë ¥í•´ì£¼ì„¸ìš”.");
 			System.out.print(">>> ");
 			memberboardDTO.setBcontent(inputLine.nextLine());
 
@@ -164,26 +164,26 @@ public class MemberBoardDAO {
 				preparedStatement.setString(2, memberboardDTO.getBcontent());
 				preparedStatement.setString(3, bno);
 
-				result = preparedStatement.executeUpdate(); // ½ÇÇà ÈÄ °á°ú Á¤¼ö·Î ¹Ş±â
+				result = preparedStatement.executeUpdate(); // ì‹¤í–‰ í›„ ê²°ê³¼ ì •ìˆ˜ë¡œ ë°›ê¸°
 
 				if (result > 0) {
-					System.out.println(result + "°³ÀÇ µ¥ÀÌÅÍ°¡ ¼öÁ¤µÇ¾ú½À´Ï´Ù.");
-					connection.commit(); // ¿µ±¸ ÀúÀå
+					System.out.println(result + "ê°œì˜ ë°ì´í„°ê°€ ìˆ˜ì •ë˜ì—ˆìŠµë‹ˆë‹¤.");
+					connection.commit(); // ì˜êµ¬ ì €ì¥
 				} else {
-					System.out.println("¼öÁ¤ÀÌ µÇÁö ¾Ê¾Ò½À´Ï´Ù.");
+					System.out.println("ìˆ˜ì •ì´ ë˜ì§€ ì•Šì•˜ìŠµë‹ˆë‹¤.");
 					connection.rollback();
-				} // if¹® Á¾·á
+				} // ifë¬¸ ì¢…ë£Œ
 			} catch (SQLException e) {
-				System.out.println("¿¹¿Ü ¹ß»ı : modify()¸Ş¼­µå¿Í sql¹®À» È®ÀÎÇÏ¼¼¿ä.");
+				System.out.println("ì˜ˆì™¸ ë°œìƒ : modify()ë©”ì„œë“œì™€ sqlë¬¸ì„ í™•ì¸í•˜ì„¸ìš”.");
 				e.printStackTrace();
 			} finally {
 				preparedStatement.close();
 			}
 		
-	} // °Ô½Ã±Û ¼öÁ¤ ¸Ş¼­µå Á¾·á
+	} // ê²Œì‹œê¸€ ìˆ˜ì • ë©”ì„œë“œ ì¢…ë£Œ
 
 	public void deleteOne(int deleteBno, MemberDTO session) throws SQLException {
-		// °Ô½Ã±Û »èÁ¦ ¸Ş¼­µå
+		// ê²Œì‹œê¸€ ì‚­ì œ ë©”ì„œë“œ
 		try {
 			String sql = "delete from memberboard where bno = ? ";
 			preparedStatement = connection.prepareStatement(sql);
@@ -192,20 +192,20 @@ public class MemberBoardDAO {
 			result = preparedStatement.executeUpdate();
 
 			if (result > 0) {
-				System.out.println(result + "°³ÀÇ °Ô½Ã±ÛÀÌ »èÁ¦µÇ¾ú½À´Ï´Ù.");
+				System.out.println(result + "ê°œì˜ ê²Œì‹œê¸€ì´ ì‚­ì œë˜ì—ˆìŠµë‹ˆë‹¤.");
 				connection.commit();
 			} else {
-				System.out.println("°Ô½Ã±ÛÀÌ »èÁ¦µÇÁö ¾Ê¾Ò½À´Ï´Ù.");
+				System.out.println("ê²Œì‹œê¸€ì´ ì‚­ì œë˜ì§€ ì•Šì•˜ìŠµë‹ˆë‹¤.");
 				connection.rollback();
 			}
 
 		} catch (SQLException e) {
-			System.out.println("¿¹¿Ü ¹ß»ı. delete ¸Ş¼­µå¿Í sql¹®À» È®ÀÎÇÏ¼¼¿ä.");
+			System.out.println("ì˜ˆì™¸ ë°œìƒ. delete ë©”ì„œë“œì™€ sqlë¬¸ì„ í™•ì¸í•˜ì„¸ìš”.");
 			e.printStackTrace();
 		} finally {
 			preparedStatement.close();
 		}
-	} // °Ô½Ã±Û »èÁ¦ ¸Ş¼­µå Á¾·á
+	} // ê²Œì‹œê¸€ ì‚­ì œ ë©”ì„œë“œ ì¢…ë£Œ
 	
 	
 }
